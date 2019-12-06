@@ -1,0 +1,100 @@
+TCRYPTION
+
+Minimal Viable Product;
+
+Variables:
+
+Type of machine
+Current price of BTC in USD
+Difficulty
+Cost of electricity
+
+*
+URL: https://slushpool.com/stats/json/[coin]/
+Integrate with SlushPool API
+Pool Stats API;
+Field	Type	Description
+luck_b10:	string,	pool luck for the last ten blocks
+luck_b50:	string,	pool luck for the last 50 blocks
+luck_b250:	string,	pool luck for the last 250 blocks
+hash_rate_unit:	string,	unit used for the hash rate values
+pool_scoring_hash_rate:	number,	pool scoring hash rate
+pool_active_workers	number:	number, of pool active workers
+round_probability	string,	current CDF for the current round
+round_started	number:	Unix time, when the current round was started
+round_duration:	number	duration, of the current round (seconds)
+blocks:	object	information for the last 15 blocks (breakdown below)
+
+Latest Blocks
+Field	Type	Description
+date_found	number	Unix time when given block was found
+mining_duration	number	duration of the round leading to given block
+total_shares	number	number of shares collected during the round
+state	string	state of given block
+confirmations_left	number	number of confirmations left
+value	string	block value
+user_reward	string	user reward for the given block
+pool_scoring_hash_rate	number	pool scoring hash rate at the time when block was found
+User Profile API
+Provides information about users performance and rewards.
+
+URL: https://slushpool.com/accounts/profile/json/[coin]/
+
+ Show sample output
+Field	Type	Description
+username	string	username
+confirmed_reward	string	confirmed reward
+unconfirmed_reward	string	unconfirmed reward
+estimated_reward	string	estimated reward for the current block
+send_threshold	string	user minimum payout threshold
+hash_rate_unit	string	unit used for the hash rate values
+hash_rate_5m	number	average hash rate for the last 5 minutes
+hash_rate_60m	number	average hash rate for the last 60 minutes
+hash_rate_24h	number	average hash rate for the last 24 hours
+hash_rate_scoring	number	user current scoring hash rate
+low_workers	number	number of workers with 'low' state
+off_workers	number	number of workers with 'off' state
+ok_workers	number	number of workers with 'ok' state
+dis_workers	number	number of workers with disabled monitoring
+Worker API
+Provides performance data for each one of users worker.
+
+URL: https://slushpool.com/accounts/workers/json/[coin]/
+
+ Show sample output
+Field	Type	Description
+last_share	number	Unix time of the last accepted share
+state	string	state of the worker (ok/low/off/dis)
+hash_rate_unit	string	unit used for the hash rate values
+hash_rate_scoring	number	current scoring hash rate
+hash_rate_5m	number	average hash rate for the last 5 minutes
+hash_rate_60m	number	average hash rate for the last 60 minutes
+hash_rate_24h	number	average hash rate for the last 24 hours
+
+Coin API:
+
+CoinGecko:
+https://www.coingecko.com/en#
+
+Wyre: Wyre API is a simple integrated payment solution for crypto startups looking to implement crypto as a payment method, rather than traditional payment methods.
+https://www.sendwyre.com/
+
+BitPay: BitPay is a Bitcoin and cryptocurrency payment processor that enables merchants and consumers to instantly accept cryptocurrency as payment without risk or price fluctuations.
+https://medium.com/coinmonks/best-crypto-apis-for-developers-5efe3a597a9f
+
+
+
+1) Automate ASIC Miner Revenue / Profitability
+- Monthly/Hourly Revenue varies on: TH/s (type of machine), Difficulty Levels
+- Profitability varies on: Revenue and cost in electricity.
+
+2) Automate Breakeven and Payback calculations
+- Breakeven = True when Profit(Monthly) <= 0$.
+- Payback (Nb of hours till investment paid back) = Price of machine/hourly profit.
+
+1.1: As a user I want to log in/register
+1.2: As a user I want to see current Bitcoin Price
+1.3: As a user I want to see monthly/hourly revenue estimations
+ -Revenue estimated based type of machine.
+
+1.4: As a user I want to connect to my mining pool
